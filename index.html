@@ -6,16 +6,17 @@
     <title>정스키국전 공식 홈페이지</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #111215;
-            --bg-card: #1a1c23;
-            --primary: #4f46e5;
-            --primary-hover: #6366f1;
+            --bg-main: #0b0c10;
+            --bg-card: #1f2833;
+            --primary: #c5a059;
+            --primary-hover: #e5c17d;
             --text-title: #ffffff;
-            --text-body: #9ca3af;
-            --border-color: #2d3139;
+            --text-body: #c5ced6;
+            --accent-red: #ff4d4d;
+            --max-width: 1100px;
         }
 
         * {
@@ -27,159 +28,354 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: var(--bg-main);
-            color: #e5e7eb;
-            line-height: 1.6;
+            color: var(--text-body);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* 네비게이션 상단바 */
+        /* 내비게이션 바 */
         nav {
-            background-color: rgba(26, 28, 35, 0.95);
-            border-bottom: 1px solid var(--border-color);
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 100;
-            padding: 15px 20px;
+            background-color: rgba(11, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            z-index: 1000;
+            padding: 15px 0;
         }
 
         .nav-container {
-            max-width: 1000px;
+            max-width: var(--max-width);
             margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: #818cf8;
-        }
-
-        /* 히어로 대문 구역 */
-        header {
-            padding: 140px 20px 60px 20px;
-            text-align: center;
-            background: linear-gradient(180deg, #1e1b4b 0%, #111215 100%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .badge {
-            background-color: #ef4444;
-            color: white;
-            font-size: 0.85rem;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
             font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 4px;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            color: var(--text-title);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(11, 12, 16, 0.7), rgba(11, 12, 16, 1)), 
+                        url('https://images.unsplash.com/photo-1607988795691-3d0147b43231?q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--text-title);
+            line-height: 1.3;
+            margin-bottom: 25px;
+            word-break: keep-all;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #949ca5;
+            margin-bottom: 40px;
+            word-break: keep-all;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000000;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-title);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-title);
+            transform: translateY(-2px);
+        }
+
+        /* 메인 콘텐츠 컨테이너 */
+        .main-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* 섹션 공통 */
+        section {
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            color: var(--text-title);
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
             display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        /* 시스템 섹션 (그리드 레이아웃) */
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 89, 0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            color: var(--primary);
             margin-bottom: 15px;
         }
 
-        header h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
+        .card h3 {
+            font-size: 20px;
             color: var(--text-title);
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.05rem;
-            color: var(--text-body);
-            margin-bottom: 30px;
-        }
-
-        /* 오픈톡 버튼 */
-        .btn-talk {
-            display: inline-block;
-            background-color: #facc15;
-            color: #111317;
+            margin-bottom: 12px;
             font-weight: 700;
-            padding: 12px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background 0.2s;
-            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.2);
         }
 
-        .btn-talk:hover {
-            background-color: #fde047;
+        .card p {
+            font-size: 15px;
+            color: #a2aab2;
+            line-height: 1.6;
         }
 
-        /* 메인 콘텐츠 리스트 */
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* 규칙 규칙 타일 레이아웃 */
+        .rules-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
 
-        section {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
+        @media (max-width: 768px) {
+            .rules-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .rules-box {
+            background: linear-gradient(145deg, #151b24, #1f2833);
             border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 35px;
+            border-top: 4px solid var(--primary);
         }
 
-        section h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
+        .rules-box.server {
+            border-top-color: var(--accent-red);
+        }
+
+        .rules-box h3 {
+            font-size: 22px;
             color: var(--text-title);
-            margin-bottom: 20px;
-            border-left: 4px solid #818cf8;
-            padding-left: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        ul {
+        .rule-list {
             list-style: none;
         }
 
-        li {
-            margin-bottom: 12px;
-            font-size: 1rem;
-            color: #d1d5db;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
+        .rule-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 18px;
+            font-size: 15px;
         }
 
-        li::before {
-            content: "•";
-            color: #818cf8;
+        .rule-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
             font-weight: bold;
         }
 
-        /* 하단 카피라이트 */
-        footer {
+        .rules-box.server .rule-list li::before {
+            content: "✕";
+            color: var(--accent-red);
+        }
+
+        /* 공지 배너 */
+        .notice-banner {
+            background-color: #11161d;
+            border: 1px dashed rgba(197, 160, 89, 0.3);
+            border-radius: 8px;
+            padding: 30px;
             text-align: center;
-            padding: 40px 20px;
-            color: #6b7280;
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
             margin-top: 40px;
         }
 
-        /* 모바일 최적화 대응 */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8rem;
+        .notice-banner h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .notice-banner p {
+            font-size: 15px;
+            color: var(--text-body);
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #060709;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 14px;
+            color: #555e66;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            header p {
-                font-size: 0.95rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 모바일 반응형 조정 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 15px;
             }
             section {
-                padding: 20px;
+                padding: 50px 0;
             }
-            section h2 {
-                font-size: 1.15rem;
-            }
-            li {
-                font-size: 0.95rem;
+            .section-header h2 {
+                font-size: 26px;
             }
         }
     </style>
@@ -188,62 +384,113 @@
 
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">정스키<span>국전</span></a>
+            <a href="#" class="logo">JEONGSKI</a>
+            <ul class="nav-menu">
+                <li><a href="#system">핵심 시스템</a></li>
+                <li><a href="#rules">서버 규칙</a></li>
+                <li><a href="#notice">운영 안내</a></li>
+            </ul>
         </div>
     </nav>
 
-    <header>
-        <h1>정스키국전</h1>
-        <p>마인크래프트 베드락 기반 국가전쟁 렐름 서버</p>
-        <a href="https://open.kakao.com/o/gJADIRii" target="_blank" class="btn-talk">💬 공식 오픈톡 참여하기</a>
+    <header class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">MINECRAFT BEDROCK REALM</p>
+            <h1>웅장한 대륙, 무한한 정복<br><span>정스키국전</span></h1>
+            <p>신호기를 활용한 국가전쟁 시스템 기반의 마인크래프트 베드락 에디션 렐름 서버입니다.</p>
+            <div class="btn-group">
+                <a href="https://open.kakao.com/o/gJADIRii" target="_blank" class="btn btn-primary">공식 오픈톡방 입장하기</a>
+                <a href="#system" class="btn btn-secondary">서버 가이드 보기</a>
+            </div>
+        </div>
     </header>
 
-    <main>
+    <main class="main-container">
 
-        <section>
-            <h2>⚔️ 서버 핵심 시스템</h2>
-            <ul>
-                <li>신호기 설치 시 주변 5~10칸 범위 원형 영토 자동 점령</li>
-                <li>이미 점령된 영토는 다른 플레이어가 신호기를 설치해 점령 가능</li>
-                <li>영토 내 신호기 파괴 시 점령권 변경 가능</li>
-                <li>영토 클릭 시 소유자 닉네임 표시</li>
-                <li>허락 시 타 플레이어 영토 진입 가능 (권한 시스템)</li>
-                <li>신호기 클릭 후 전쟁 선포 버튼으로 국가 간 전쟁 가능</li>
-            </ul>
+        <section id="system">
+            <div class="section-header">
+                <h2>SERVER SYSTEM</h2>
+                <p>정스키국전의 6대 핵심 시스템</p>
+            </div>
+            <div class="system-grid">
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>영토 자동 점령</h3>
+                    <p>신호기 설치 시 주변 5~10칸 범위 원형 영토 자동 점령</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚔️</div>
+                    <h3>영토 점령권 변경</h3>
+                    <p>이미 점령된 영토는 다른 플레이어가 신호기를 설치해 점령 가능</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💥</div>
+                    <h3>신호기 파괴</h3>
+                    <p>영토 내 신호기 파괴 시 점령권 변경 가능</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>닉네임 표시</h3>
+                    <p>영토 클릭 시 소유자 닉네임 표시</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>권한 시스템</h3>
+                    <p>허락 시 타 플레이어 영토 진입 가능 (권한 시스템)</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👑</div>
+                    <h3>국가 간 전쟁</h3>
+                    <p>신호기 클릭 후 전쟁 선포 버튼으로 국가 간 전쟁 가능</p>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>🏳️ 국가 규칙</h2>
-            <ul>
-                <li>국가 생성 자유 (이름, 국기 설정 가능)</li>
-                <li>동맹 및 전쟁 자유</li>
-                <li>영토 확장 가능</li>
-            </ul>
+        <section id="rules">
+            <div class="section-header">
+                <h2>SERVER RULES</h2>
+                <p>서버 플레이 규칙 안내</p>
+            </div>
+            
+            <div class="rules-wrapper">
+                <div class="rules-box">
+                    <h3>🏳️ 국가 규칙</h3>
+                    <ul class="rule-list">
+                        <li>국가 생성 자유 (이름, 국기 설정 가능)</li>
+                        <li>동맹 및 전쟁 자유</li>
+                        <li>영토 확장 가능</li>
+                    </ul>
+                </div>
+
+                <div class="rules-box server">
+                    <h3>⚠️ 서버 규칙</h3>
+                    <ul class="rule-list">
+                        <li>핵 / 치트 / 불법 모드 사용 금지 (즉시 제재)</li>
+                        <li>무단 약탈 및 서버 악용 금지</li>
+                        <li>운영자 판단 절대 우선</li>
+                        <li>비매너, 욕설 과도 사용 금지</li>
+                        <li>스폰 및 보호구역 훼손 금지</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
-        <section style="border-color: #ef4444;">
-            <h2 style="border-left-color: #ef4444; color: #fca5a5;">⚠️ 서버 규칙</h2>
-            <ul>
-                <li>핵 / 치트 / 불법 모드 사용 금지 (즉시 제재)</li>
-                <li>무단 약탈 및 서버 악용 금지</li>
-                <li>운영자 판단 절대 우선</li>
-                <li>비매너, 욕설 과도 사용 금지</li>
-                <li>스폰 및 보호구역 훼손 금지</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>📌 안내</h2>
-            <ul>
-                <li>본 서버는 국가 간 전쟁과 성장 중심 서버입니다.</li>
-                <li>모든 분쟁은 운영진 판단에 따라 처리됩니다.</li>
-            </ul>
+        <section id="notice">
+            <div class="section-header">
+                <h2>📌 안내</h2>
+                <p>운영 지침 및 안내 사항</p>
+            </div>
+            <div class="notice-banner">
+                <p style="margin-bottom: 15px;">본 서버는 국가 간 전쟁과 성장 중심 서버입니다.</p>
+                <p>모든 분쟁은 <strong>운영진 판단에 따라 처리</strong>됩니다.</p>
+            </div>
         </section>
 
     </main>
 
     <footer>
         <p>&copy; 2026 정스키국전. All Rights Reserved.</p>
+        <p>본 서버는 마인크래프트 공식 서버가 아니며, Mojang Studios와 연관이 없습니다.</p>
     </footer>
 
 </body>
